@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>樂齡人生設計所 | 你的下半場人生，由你自己重新設計</title>
+    <style>
+        /* 基礎設定 */
+        :root {
+            --primary-color: #E67E22; /* 溫暖的橘色，呼應桌遊主色調 */
+            --secondary-color: #2C3E50; /* 專業深藍 */
+            --accent-color: #F1C40F; /* 活潑黃色 */
+            --light-bg: #FDFBF7;
+            --text-color: #333;
+        }
+
+        body {
+            font-family: "Helvetica Neue", Helvetica, Arial, "PingFang TC", "Heiti TC", "Microsoft JhengHei", sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            background-color: var(--light-bg);
+        }
+
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; padding: 0; }
+
+        /* 導覽列 */
+        header {
+            background-color: #fff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        /* 按鈕樣式 */
+        .btn {
+            display: inline-block;
+            padding: 10px 25px;
+            background-color: var(--primary-color);
+            color: #fff;
+            border-radius: 25px;
+            font-weight: bold;
+            transition: 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: #D35400;
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid #fff;
+            margin-left: 10px;
+        }
+
+        .btn-outline:hover {
+            background-color: #fff;
+            color: var(--primary-color);
+        }
+
+        /* 區塊通用設定 */
+        section {
+            padding: 4rem 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        h2 {
+            text-align: center;
+            color: var(--secondary-color);
+            margin-bottom: 2rem;
+            font-size: 2rem;
+        }
+
+        h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        /* Hero 區域 */
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1516733968668-dbdce39c4651?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80'); /* 示意背景圖 */
+            background-size: cover;
+            background-position: center;
+            height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: #fff;
+            margin-top: 60px; /* 避開 navbar */
+        }
+
+        .hero-content h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* 理念區塊 (Grid 佈局) */
+        .philosophy-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .card {
+            background: #fff;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            text-align: center;
+        }
+
+        /* 課程模組 */
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .timeline-item {
+            padding: 1rem 2rem;
+            border-left: 3px solid var(--primary-color);
+            margin-bottom: 1.5rem;
+            background: #fff;
+            position: relative;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -10px;
+            top: 20px;
+            width: 16px;
+            height: 16px;
+            background: var(--primary-color);
+            border-radius: 50%;
+        }
+
+        /* 活動資訊 (強調區塊) */
+        .event-banner {
+            background-color: #FFF3E0;
+            border: 2px dashed var(--primary-color);
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .event-details {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 1.5rem 0;
+            flex-wrap: wrap;
+        }
+
+        .price-tag {
+            font-size: 1.5rem;
+            color: #C0392B;
+            font-weight: bold;
+        }
+
+        /* 頁尾 */
+        footer {
+            background-color: var(--secondary-color);
+            color: #fff;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+        }
+
+        /* 響應式調整 */
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .hero-content h1 { font-size: 2rem; }
+            .event-details { flex-direction: column; gap: 0.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav>
+            <div class="logo">樂齡人生設計所</div>
+            <div class="nav-links">
+                <a href="#about">關於我們</a>
+                <a href="#game">桌遊體驗</a>
+                <a href="#course">課程模組</a>
+                <a href="#event">最新活動</a>
+            </div>
+            <a href="https://reurl.cc/xKkZLE" target="_blank" class="btn">立即報名</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>設計你的第二人生</h1>
+            <p>「我現在過的，是我真正想要的生活嗎？」<br>結合桌遊體驗與反思，開始一場關於「回到自己」的探索旅程。</p>
+            <div>
+                <a href="#event" class="btn">報名師資培訓</a>
+                <a href="#game" class="btn btn-outline">了解桌遊</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="about">
+        <h2>為什麼需要人生設計？</h2>
+        <div class="philosophy-grid">
+            <div class="card">
+                <h3>帆船理論 (Sailboat Metaphor)</h3>
+                <p>超越馬斯洛需求層次。我們引導你檢視「船身」（安全、連結、自尊）是否穩固，並打開「船帆」（探索、愛、目標）迎向成長。</p>
+            </div>
+            <div class="card">
+                <h3>餘裕理論 (Margin Theory)</h3>
+                <p>人生不是只要衝刺。透過體驗活動，我們協助你找回生活的餘裕，創造改變的空間。</p>
+            </div>
+            <div class="card">
+                <h3>設計思考 (Design Thinking)</h3>
+                <p>人生沒有標準答案。像設計師一樣思考，透過「原型測試」與「奧德賽計畫」，嘗試未來的可能性。</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="game" style="background-color: #f9f9f9;">
+        <h2>樂齡人生設計所 桌遊體驗</h2>
+        <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 2rem;">
+            <div style="flex: 1;">
+                <p><strong>這不只是一場遊戲，而是人生的預演。</strong></p>
+                <p>在遊戲中，你將擔任「人生設計師」，為角色規劃即將進入的樂齡生活。</p>
+                <ul>
+                    <li>🕒 <strong>時間成本管理：</strong> 每個行動都需要成本，你會選擇「規劃行程」精進自我，還是「休息」恢復體力？</li>
+                    <li>❤️ <strong>生命議題抉擇：</strong> 面對「父母年邁失智」、「民生變動」等突發事件卡，考驗你的應變韌性。</li>
+                    <li>🧭 <strong>四大指標平衡：</strong> 統整健康、職涯、休閒、關係，打造屬於你的幸福人生。</li>
+                </ul>
+            </div>
+            <div style="flex: 1; text-align: center;">
+                <div style="background-color: #ddd; height: 300px; display: flex; align-items: center; justify-content: center; border-radius: 10px;">
+                    <img src="Z645-主視覺_書腰版.jpg" alt="樂齡人生設計所桌遊" style="max-width: 100%; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="course">
+        <h2>系統化學習地圖</h2>
+        <div class="timeline">
+            <div class="timeline-item">
+                <h3>模組一：覺察與探索</h3>
+                <p>我是誰？我的現狀如何？透過「帆船理論」視覺化現況，盤點安全感與成長動能。</p>
+            </div>
+            <div class="timeline-item">
+                <h3>模組二：釐清與定義</h3>
+                <p>我想要什麼樣的人生？運用「好時光日誌」捕捉能量流動，設計你的「奧德賽計畫」。</p>
+            </div>
+            <div class="timeline-item">
+                <h3>模組三：實踐與優化</h3>
+                <p>如何將想法付諸行動？尋找屬於你的 IKIGAI（生命意義）。</p>
+            </div>
+            <div class="timeline-item">
+                <h3>模組四：持續成長</h3>
+                <p>行動方案與實踐。建立支持系統，將大目標拆解為微型實驗，持續修正優化 。</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="event">
+        <div class="event-banner">
+            <h2>【台北】全天師資培訓課</h2>
+            <p style="font-size: 1.2rem;">遊戲化引導 × 自我狀態覺察 × 設計可行行動方案</p>
+            
+            <div class="event-details">
+                <div>📅 <strong>日期：</strong> 2026/01/31 (六)</div>
+                <div>⏰ <strong>時間：</strong> 09:30 - 16:30</div>
+                <div>📍 <strong>地點：</strong> 台北 (近捷運站步行5分鐘)</div>
+                <div>👥 <strong>名額：</strong> 限 20 人</div>
+            </div>
+
+            <div style="background: #fff; padding: 1.5rem; border-radius: 8px; margin: 2rem 0;">
+                <p><strong>上午課程：</strong>樂齡人生再設計桌遊體驗（引導反思，讓「退休準備」更有溫度）</p>
+                <p><strong>下午課程：</strong>三大模組實作（覺察探索、釐清定義、實踐整合）</p>
+                <p>🎁 <strong>附贈：</strong>學員手冊 + 教師手冊</p>
+                <p>🏅 <strong>認證：</strong>可申請「台灣樂齡發展協會」認證師資</p>
+            </div>
+
+            <div>
+                <p>原價：4,500元</p>
+                <p class="price-tag">三人團報 / 早鳥優惠：3,800元 <span style="font-size: 0.9rem; color: #666;">(1/16止)</span></p>
+            </div>
+            
+            <br>
+            <a href="https://reurl.cc/xKkZLE" target="_blank" class="btn" style="font-size: 1.2rem; text-decoration: none;">立即線上報名</a>
+        </div>
+    </section>
+
+    <footer>
+        <p>主辦單位：台灣樂齡發展協會 | 協辦單位：2Plus灣加遊戲</p>
+        <p>課程監修：王維旎 蔣若葳</p>
+        <p>&copy; 2026 樂齡人生設計所 Ageing Life Design Institute. All Rights Reserved.</p>
+    </footer>
+
+</body>
+</html>
